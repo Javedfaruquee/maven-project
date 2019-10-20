@@ -79,6 +79,43 @@
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>taglist-maven-plugin</artifactId>
             </plugin>
+            
+            <plugin>
+              <groupId>org.jacoco</groupId>
+              <artifactId>jacoco-maven-plugin</artifactId>
+              <version>0.7.9</version>
+              <executions>
+                 <execution>
+                    <id>default-prepare-agent</id>
+                    <goals>
+                       <goal>prepare-agent</goal>
+                    </goals>
+                 </execution>
+                 <execution>
+                    <id>default-report</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                       <goal>report</goal>
+                    </goals>
+                 </execution>
+              </executions>
+            </plugin>       
+                   
+            <plugin>
+               <groupId>org.sonarsource.sonar-packaging-maven-plugin</groupId>
+               <artifactId>sonar-packaging-maven-plugin</artifactId>
+               <version>1.17</version>
+               <extensions>true</extensions>
+               <configuration>
+                  <pluginKey>piotjavacustom</pluginKey>
+                  <pluginName>PiotrCustomRules</pluginName>
+                  <pluginDescription>For test purposes</pluginDescription>
+                  <pluginClass>pl.piomin.sonar.plugin.CustomRulesPlugin</pluginClass>
+                  <sonarLintSupported>true</sonarLintSupported>
+                  <sonarQubeMinVersion>6.0</sonarQubeMinVersion>
+               </configuration>
+            </plugin>       
+                   
           </reportPlugins>
         </configuration>
       </plugin>
@@ -218,9 +255,3 @@
   </prerequisites>
 
 </project>
-
-
-
-
-
-
